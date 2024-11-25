@@ -27,6 +27,7 @@ export default {
 
         if (!response.ok) {
           const error = await response.json();
+          // Display SweetAlert error message
           Swal.fire({
             icon: "error",
             title: "Login failed",
@@ -37,16 +38,19 @@ export default {
 
         const data = await response.json();
 
+        // Display SweetAlert success message
         Swal.fire({
           icon: "success",
           title: "Login Successful",
-          text: "You are now logged in!",
+          text: `Welcome ${data.user.nama}`,
         }).then(() => {
-
+          // Save token to localStorage
           localStorage.setItem("userToken", data.token);
+          // Redirect to dashboard
           this.$router.push("/dashboard");
         });
       } catch (error) {
+        // Display SweetAlert error message for network errors
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -58,7 +62,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
@@ -103,7 +106,7 @@ export default {
           type="submit"
           class="w-full bg-blue-600 text-white font-medium py-2 rounded-lg hover:bg-blue-700 transition"
         >
-          Sign up
+          Login
         </button>
       </form>
 

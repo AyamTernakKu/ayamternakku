@@ -1,5 +1,7 @@
+<script setup>
+import Nav from "../../layout/navbar.vue"
+</script>
+
 <template>
-    <div>
-        <h1>home</h1>
-    </div>
+    <Nav />
 </template>
